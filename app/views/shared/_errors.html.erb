@@ -1,7 +1,7 @@
 <% if object.errors.any? %>
 <div id="errors">
   <div class="alert alert-error">
-    Could not create account. Please fix the following error(s):
+    Could not create <%= @obj %>. Please fix the following error(s):
   </div>
   <ul>
     <% object.errors.full_messages.each do |m| %>

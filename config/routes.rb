@@ -2,6 +2,7 @@ SurveySite::Application.routes.draw do
   root 'static_pages#home'
   resources :users,    only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :surveys,  only: [:new, :create]
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'

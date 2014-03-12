@@ -1,0 +1,56 @@
+users (id, email, password_digest, first_name, last_name, admin, remember_token, timestamps)
+  - Primary key: id
+  - Not null: ALL
+  - Unique: email
+  - Index: email
+surveys (id, user_id, title, description, public, timestamps)
+  - Primary key: id
+  - Foreign key: user_id
+  - Not null: ALL
+  - Unique:
+  - Index: id
+questions (id, survey_id, text, type, required)
+  - Primary key: id
+  - Foreign key: survey_id
+  - Not null: ALL
+  - Unique:
+  - Index:
+question_choices (id, question_id, choice_text)
+  - Primary key: id
+  - Foreign key: question_id
+  - Not null: ALL
+  - Unique:
+  - Index:
+answers (id, user_id, question_id)
+  - Primary key: id
+  - Foreign key: user_id, question_id
+  - Not null: ALL
+  - Unique:
+  - Index:
+answer_text (id, answer_id, text)
+  - Primary key: id
+  - Foreign key: answer_id
+  - Not null: ALL
+  - Unique:
+  - Index:
+answer_choices (id, answer_id, question_choice_id)
+  - Primary key: id
+  - Foreign key: answer_id, question_choice_id
+  - Not null: ALL
+  - Unique:
+  - Index:
+taking (id, user_id, survey_id, status)
+  - Primary key: id
+  - Foreign key: user_id, survey_id
+  - Not null: ALL
+  - Index:
+
+Relationships:
+users - surveys : 1 - N
+surveys - questions : 1 - N
+questions - question_choices : 1 - N
+questions - answers : 1 - N
+user - answers : 1 - N
+answers - answer_choices : 1 - N
+user - taking : N - N
+taking - surveys : N - N
