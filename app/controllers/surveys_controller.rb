@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   def new
-    @survey = Survey.new 
+    @survey = Survey.new
+    3.times { @survey.questions.build(text: 'checkbox') }
   end
 
   def create

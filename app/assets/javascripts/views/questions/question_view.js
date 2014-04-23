@@ -1,34 +1,23 @@
-var MultipleChoiceQuestionView = Backbone.View.extend({
+SurveySite.Views.Question = Backbone.View.extend({
   tagName: 'tr',
-  template: _.template($('#mcquestiontemplate').html()),
+  template: JST['questions/question_template'],
   events: {
     'click    #questiontext': 'editText',
     'blur     #edittext'    : 'showText',
     'keypress #edittext'    : 'saveText',
-    'click    #delete'      : 'deleteQuestion',
-    'click    #addchoice'   : 'addAnswerChoice'
+    'click    #delete'      : 'deleteQuestion'
   },
 
   initialize : function() {
-    this.collection = new AnswerChoices();
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model, 'destroy', this.deleteView);
-    this.choiceViews = [];
     this.render();
     this.showText();
   },
 
   render : function() {
     $(this.el).html(this.template(this.model.toJSON()));
-    this.renderAnswerChoices();
     return this;
-  },
-
-  renderAnswerChoices : function() {
-    var that = this;
-    this.collection.each(function(choice) {
-      that.addAnswerChoiceView(choice);
-    });
   },
 
   showText : function() {
@@ -61,19 +50,5 @@ var MultipleChoiceQuestionView = Backbone.View.extend({
 
   deleteView : function() {
     $(this.el).remove();
-  },
-
-  addAnswerChoice : function() {
-    var newAnswerChoice = new AnswerChoice();
-    this.addAnswerChoiceView(newAnswerChoice);
-    this.collection.add(newAnswerChoice);
-  },
-
-  addAnswerChoiceView : function(model) {
-    var newAnswerChoiceView = new AnswerChoiceView({ model: model });
-    this.$('#choices').append(newAnswerChoiceView.el);
   }
-
 });
-
-ENTER_KEY = 13;
