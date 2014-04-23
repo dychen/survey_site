@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title>Create a survey</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <div id="surveydiv" align="center">
+      <h1>Survey</h1>
+      <input id="surveytitle" placeholder="Title">
+      <div id="questions" align="center">
+        <select name="Question type" id="questiontype">
+          <option value="text">Text</option>
+          <option value="multiplechoice">Multiple Choice</option>
+          <option value="checkbox">Checkbox</option>
+        </select>
+        <button id="newquestion">New Question</button>
+        <table id="questions" class="table table-striped">
+          <thead>
+            <th>Question</th>
+            <th></th>
+          </thead>
+          <tbody id="questionslist">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script type="text/template" id="answerchoicetemplate">
+      <label id="answerchoicetext"><%- text %></label>
+      <input id="edittext" value="<%- text %>">
+    </script>
+
+    <script type="text/template" id="questiontemplate">
+      <td style="text-align: left">
+        <label id="questiontext"><%- text %></label>
+        <input id="edittext" value="<%- text %>">
+        <input type="checkbox" id="required">Required
+        <button id="delete">Delete</button>
+      </td>
+    </script>
+
+    <script type="text/template" id="mcquestiontemplate">
+      <td style="text-align: left">
+        <label id="questiontext"><%- text %></label>
+        <input id="edittext" value="<%- text %>">
+        <input type="checkbox" id="required">Required
+        <button id="delete">Delete</button>
+        <ol id="choices"></ol>
+        <button id="addchoice">Add Answer Choice</button>
+      </td>
+    </script>
+
+    <script src="lib/jquery-1.11.0.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>
+    <script src="lib/backbone.localStorage.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    
+    <script src="js/models/question.js"></script>
+    <script src="js/models/multiple_choice_question.js"></script>
+    <script src="js/models/answer_choice.js"></script>
+    <script src="js/collections/questions.js"></script>
+    <script src="js/collections/answer_choices.js"></script>
+    <script src="js/views/question_view.js"></script>
+    <script src="js/views/multiple_choice_question_view.js"></script>
+    <script src="js/views/questions_view.js"></script>
+    <script src="js/views/answer_choice_view.js"></script>
+
+    </body>
+</html>
