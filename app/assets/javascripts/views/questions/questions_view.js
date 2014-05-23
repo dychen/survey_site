@@ -5,13 +5,14 @@ SurveySite.Views.Questions = Backbone.View.extend({
     'click #newquestion': 'createQuestion'
   },
 
-  initialize : function() {
-    this.questions = new SurveySite.Collections.Questions();
+  initialize : function(questions) {
+    this.questions = questions;
     this.render();
   },
 
   render : function() {
     $(this.el).html(this.template);
+    return this;
   },
 
   createQuestion : function(e) {

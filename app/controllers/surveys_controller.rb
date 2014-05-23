@@ -1,10 +1,15 @@
 class SurveysController < ApplicationController
   def new
     @survey = Survey.new
-    3.times { @survey.questions.build(text: 'checkbox') }
   end
 
   def create
+    require 'pry'
+    binding.pry
+    params
+    survey_params = {
+      user_id: 1
+    }
     @survey = current_user.surveys.build(survey_params)
     if @survey.save
       redirect_to root_path
